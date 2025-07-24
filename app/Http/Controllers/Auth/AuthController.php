@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Announcement;
 
 class AuthController extends Controller
 {
@@ -18,10 +19,13 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $role = Auth::user()->role;
+
             if ($role === 'admin') {
-                return redirect()->route('admin.dashboard');
+                return view('admin.dashboard');
             } else {
-                return redirect()->route('teacher.dashboard');
+                 $announcements = Announcement::where('target_role', 'teacher')->latest()->take(10)->get();
+                     return view('teacher.dashboard', compact('announcements'));
+                
             }
         }
 
@@ -32,5 +36,15 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function adminDashboard(){
+         return view('admin.dashboard');
+    }
+
+        public function teacherDashboard(){
+            $announcements = Announcement::where('target_role', 'teacher')->latest()->take(10)->get();
+
+            return view('teacher.dashboard',compact('announcements'));
     }
 }

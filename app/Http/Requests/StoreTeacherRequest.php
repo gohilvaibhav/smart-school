@@ -30,7 +30,7 @@ class StoreTeacherRequest extends FormRequest
             'birth_date' => 'required',
             'qualification' => 'required|string',
             'experience' => 'required|string',
-            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'profile_photo' => 'nullable',
         ];
     }
 }

@@ -20,6 +20,7 @@
             background-color: #495057;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -32,12 +33,12 @@
 
             @if(auth()->user()?->role === 'admin')
                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-                <a href="#">Manage Teachers</a>
-                <a href="#">Post Announcements</a>
+                <a href="{{ route('admin.teachers.index') }}">Manage Teachers</a>
+                <a href="{{ route('admin.announcements.index') }}">Post Announcements</a>
             @elseif(auth()->user()?->role === 'teacher')
                 <a href="{{ route('teacher.dashboard') }}">Dashboard</a>
-                <a href="#">Manage Students</a>
-                <a href="#">Manage Parents</a>
+                <a href="{{ route('teacher.students.index') }}">Manage Students</a>
+                <a href="{{ route('teacher.parents.index') }}">Manage Parents</a>
                 <a href="#">Post Announcements</a>
             @endif
 
@@ -63,6 +64,8 @@
         @yield('content')
     </div>
 @endguest
+
+@stack('scripts')
 
 </body>
 </html>
