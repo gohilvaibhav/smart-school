@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ config('app.name', 'EduConnect') }}</title>
+    <title>{{ config('app.name', 'Smart School') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background: #f8f9fa; }
@@ -29,7 +29,7 @@
     <div class="row">
         <!-- Sidebar -->
         <div class="col-md-2 sidebar">
-            <h4 class="text-white text-center py-3">EduConnect</h4>
+            <h4 class="text-white text-center py-3">Smart School</h4>
 
             @if(auth()->user()?->role === 'admin')
                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
